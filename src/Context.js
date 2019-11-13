@@ -83,10 +83,19 @@ class RoomProvider extends React.Component {
       breakfast,
       pets
     } = this.state;
+    // all the rooms
     let tempRooms = [...rooms];
+    // transform values
+    capactiy = parseInt(capactiy);
     if (type !== "all") {
       tempRooms = tempRooms.filter(room => room.type === type);
     }
+    // filter by capactiy
+    if (capactiy !== 1) {
+      tempRooms = tempRooms.filter(room => room.capacity >= capactiy);
+    }
+    // filter by price
+    tempRooms = tempRooms.filter(room => room.price <= price);
     this.setState({
       sortedRooms: tempRooms
     });
